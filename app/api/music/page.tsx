@@ -1,6 +1,6 @@
 "use client";
 import { Heading } from "@/components/heading";
-import { VideoIcon } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 import { useForm } from "react-hook-form";
 
 import * as z from "zod";
@@ -15,11 +15,12 @@ import { Empty } from "@/components/Empty";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { ChatCompletionRequestMessage } from "openai";
 import { Loader } from "@/components/loader";
 
-const VideoPage = () => {
+const MusicPage = () => {
   const router = useRouter();
-  const [video, setVideo] = useState<string>();
+  const [music, setMusic] = useState<string>();
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -32,9 +33,9 @@ const VideoPage = () => {
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     try {
-      setVideo(undefined);
-      const response = await axios.post("/api/video", values);
-      setVideo(response.data[0]);
+      setMusic(undefined);
+      const response = await axios.post("/api/music", values);
+      setMusic(response.data.audio);
       form.reset();
     } catch (error: any) {
       console.log(error);
@@ -46,11 +47,11 @@ const VideoPage = () => {
   return (
     <div>
       <Heading
-        title="Video Generation"
-        descrition="Advanced Video Generative AI"
-        Icon={VideoIcon}
-        iconColor="text-orange-500"
-        bgColor="bg-orange-500/10"
+        title="Music Generation"
+        descrition="Advanced Music Generative AI"
+        Icon={MessageSquare}
+        iconColor="text-emerald-500"
+        bgColor="bg-emerald-500/10"
       />
       <div className="px-4 lg:px-8">
         <div>
@@ -78,7 +79,7 @@ const VideoPage = () => {
                       <Input
                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                         disabled={isLoading}
-                        placeholder="Give prompt to generate video."
+                        placeholder="Give prompt to generate music."
                         {...field}
                       />
                     </FormControl>
@@ -100,15 +101,15 @@ const VideoPage = () => {
               <Loader />
             </div>
           )}
-          {!video && !isLoading && (
+          {!music && !isLoading && (
             <div>
-              <Empty label="No video generated." />
+              <Empty label="No music generated." />
             </div>
           )}
-          {video && (
-            <video controls className="w-full aspect-video mt-8 rounded-lg border bg-black">
-              <source src={video}></source>
-            </video>
+          {music && (
+            <audio controls className="w-full mt-8">
+              <source src={music}></source>
+            </audio>
           )}
         </div>
       </div>
@@ -116,4 +117,4 @@ const VideoPage = () => {
   );
 };
 
-export default VideoPage;
+export default MusicPage;
