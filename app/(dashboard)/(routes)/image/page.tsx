@@ -21,6 +21,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Card, CardFooter } from "@/components/ui/card";
 import { Download, ImageIcon } from "lucide-react";
 import { useProModal } from "@/hooks/use-pro-modal";
+import toast from "react-hot-toast";
 
 const ConversationPage = () => {
   const proModal = useProModal();
@@ -49,6 +50,8 @@ const ConversationPage = () => {
     } catch (error: any) {
       if(error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error("something went wrong");
       }
       console.log(error);
     } finally {

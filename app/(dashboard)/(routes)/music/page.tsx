@@ -18,6 +18,7 @@ import { useState } from "react";
 import { ChatCompletionRequestMessage } from "openai";
 import { Loader } from "@/components/loader";
 import { useProModal } from "@/hooks/use-pro-modal";
+import toast from "react-hot-toast";
 
 const MusicPage = () => {
   const proModal = useProModal();
@@ -42,6 +43,8 @@ const MusicPage = () => {
     } catch (error: any) {
       if(error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error("something went wrong");
       }
       console.log(error);
     } finally {
