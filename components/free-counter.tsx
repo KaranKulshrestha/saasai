@@ -9,9 +9,10 @@ import { useProModal } from "@/hooks/use-pro-modal";
 
 interface sideBarProps {
   apiLimitCount: number;
+  isPro: boolean;
 }
 
-const FreeCounter = ({ apiLimitCount = 0 }: sideBarProps) => {
+const FreeCounter = ({ apiLimitCount = 0, isPro }: sideBarProps) => {
     const proModal = useProModal();
     const [mounted, setMounted] = useState(false);
     useEffect(() => {
@@ -19,6 +20,10 @@ const FreeCounter = ({ apiLimitCount = 0 }: sideBarProps) => {
     }, []);
 
     if(!mounted) {
+        return null;
+    }
+
+    if(isPro) {
         return null;
     }
 

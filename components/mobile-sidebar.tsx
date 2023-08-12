@@ -8,9 +8,10 @@ import Sidebar from "./Sidebar";
 
 interface SidebarProps {
   apiLimitCount: number;
+  isPro: boolean;
 }
 
-const MobileSidebar = ({apiLimitCount}:SidebarProps) => {
+const MobileSidebar = ({apiLimitCount, isPro}:SidebarProps) => {
     const [isMounted, setIsMounted] = useState(false);
     useEffect(() => {
         setIsMounted(true);
@@ -28,7 +29,7 @@ const MobileSidebar = ({apiLimitCount}:SidebarProps) => {
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="p-0">
-        <Sidebar apiLimitCount={apiLimitCount} />
+        <Sidebar apiLimitCount={apiLimitCount} isPro={isPro} />
       </SheetContent>
     </Sheet>
   );
