@@ -4,7 +4,7 @@ import { useProModal } from "@/hooks/use-pro-modal";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Badge } from "./ui/badge";
 import { DialogDescription } from "@radix-ui/react-dialog";
-import { Check, Code, ImageIcon, LayoutDashboard, MessageSquare, Music, Settings, VideoIcon, Zap } from "lucide-react";
+import { Check, Code, ImageIcon,  MessageSquare, Music,  VideoIcon, Zap } from "lucide-react";
 import { Card } from "./ui/card";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
