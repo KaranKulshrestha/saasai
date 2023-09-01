@@ -1,5 +1,5 @@
 
-# Generative SAAS AI Platform
+# Generative AI SAAS Platform
 This is the Powerful Generative AI platform powered by OpenAI and Replicate. The name of this project is "SaaS AI".
 This project also has a chat support feature.
 
